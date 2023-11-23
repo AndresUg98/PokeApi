@@ -3,6 +3,7 @@ import { Home } from "../Home";
 import { PokeInfo } from "../PokeInfo";
 import { PokeTeam } from "../PokeTeam";
 import { NotFound } from "../NotFound";
+import { Navbar } from "../../Components/Navbar";
 import "./App.css";
 
 const AppRoutes = () => {
@@ -19,6 +20,7 @@ function App() {
   return (
     <BrowserRouter>
       <AppRoutes />
+      <Navbar />
     </BrowserRouter>
   );
 }
