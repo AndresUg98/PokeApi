@@ -29,15 +29,27 @@
   }
   .Navbar-team {
     border-radius: 15px 0px 0px 15px;
+    img {
+      width: 30px;
+      height: 30px;
+    }
   }
   .Navbar-home {
     border-left: 1.5px solid #000;
     border-right: 1.5px solid #000;
+    img {
+      width: 30px;
+      height: 30px;
+    }
   }
   .Navbar-back {
     border-radius: 0px 15px 15px 0px;
 
     background: #fff;
+    img {
+      width: 30px;
+      height: 30px;
+    }
   }
 
   a {

@@ -1,6 +1,8 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { MdCatchingPokemon } from "react-icons/md";
+import Pokeball from "../../assets/icons/pokeball.png";
+import Pokedex from "../../assets/icons/pokedex.png";
+import Back from "../../assets/icons/back.png";
 import "./Navbar.scss";
 function Navbar() {
   const navigate = useNavigate();
@@ -9,14 +11,18 @@ function Navbar() {
       <ul className="Navbar-elements">
         <li className="Navbar-team">
           <NavLink to="/PokeTeam">
-            <MdCatchingPokemon />
+            <img src={Pokeball} alt="" srcset="" />
           </NavLink>
         </li>
         <li className="Navbar-home">
-          <NavLink to="/">Home</NavLink>
+          <NavLink to="/">
+            <img src={Pokedex} alt="" srcset="" />
+          </NavLink>
         </li>
         <li className="Navbar-back">
-          <NavLink onClick={() => navigate(-1)}>Back</NavLink>
+          <NavLink onClick={() => navigate(-1)}>
+            <img src={Back} alt="" srcset="" />
+          </NavLink>
         </li>
       </ul>
     </nav>
