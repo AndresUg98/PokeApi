@@ -4,7 +4,7 @@ import "./SearchBar.scss";
 function SearchBar() {
   return (
     <div className="SearchBar-container">
-      {/* <img src={Search} alt="" srcset="" /> */}
+      {/* <img src={Search} alt=""  /> */}
       <input className="SearchBar" type="text" />
     </div>
   );

@@ -11,17 +11,17 @@ function Navbar() {
       <ul className="Navbar-elements">
         <li className="Navbar-team">
           <NavLink to="/PokeTeam">
-            <img src={Pokeball} alt="" srcset="" />
+            <img src={Pokeball} alt="" />
           </NavLink>
         </li>
         <li className="Navbar-home">
           <NavLink to="/">
-            <img src={Pokedex} alt="" srcset="" />
+            <img src={Pokedex} alt="" />
           </NavLink>
         </li>
         <li className="Navbar-back">
           <NavLink onClick={() => navigate(-1)}>
-            <img src={Back} alt="" srcset="" />
+            <img src={Back} alt="" />
           </NavLink>
         </li>
       </ul>
