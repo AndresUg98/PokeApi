@@ -5,16 +5,8 @@ import "./Home.scss";
 
 function Home() {
   const [pokemons, setPokemons] = useState(null);
-  const pokeApi = "https://pokeapi.co/api/v2/pokemon?limit=10000&offset=0";
+  const pokeApi = "https://pokeapi.co/api/v2/pokemon?limit=1008";
   //  consumiendo api pokemon
-  // useEffect(() => {
-  //   //fetch nos permite conectarnos a la api
-  //   fetch(pokeApi)
-  //     .then((response) => response.json())
-  //     //Debido a la cantidad de pokemon, tuvimos que entrar al atributo results que nos que es donde esta la verdadera informacion de los pokemon
-  //     .then((data) => setPokemons(data.results));
-
-  // }, []);
 
   useEffect(() => {
     const getPokemons = async () => {
@@ -30,7 +22,7 @@ function Home() {
         return {
           id: poke.id,
           name: poke.name,
-          img: poke.sprites.other.dream_world.front_default,
+          img: poke.sprites.other["official-artwork"].front_default,
         };
       });
 
@@ -57,7 +49,11 @@ function Home() {
 
         {pokemons?.map((pokemon) => {
           return (
-            <PokeCard key={pokemon.url} name={pokemon.name} img={pokemon.img} />
+            <PokeCard
+              key={pokemon.name}
+              name={pokemon.name}
+              img={pokemon.img}
+            />
           );
         })}
       </section>
