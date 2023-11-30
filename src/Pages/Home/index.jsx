@@ -13,16 +13,21 @@ function Home() {
       //Recuperar la lista de los pokemones
       const response = await fetch(pokeApi);
       const pokemonArray = await response.json();
+
       const { results } = pokemonArray;
 
       const NewPokemons = results.map(async (pokemon) => {
         const response = await fetch(pokemon.url);
         const poke = await response.json();
 
+        //Obtaining the types of the poe=kemon
+        let types = poke.types.map((type) => type.type.name);
+
         return {
           id: poke.id,
           name: poke.name,
           img: poke.sprites.other["official-artwork"].front_default,
+          types: types,
         };
       });
 
@@ -32,6 +37,11 @@ function Home() {
     getPokemons();
   }, []);
 
+  // console.log(
+  //   pokemons?.map((pokemon) => {
+  //     return pokemon.types;
+  //   })
+  // );
   return (
     <div className="Home">
       <section className="Home-header">
@@ -53,6 +63,7 @@ function Home() {
               key={pokemon.name}
               name={pokemon.name}
               img={pokemon.img}
+              types={pokemon.types}
             />
           );
         })}

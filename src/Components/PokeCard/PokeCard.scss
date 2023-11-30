@@ -34,3 +34,89 @@
     overflow: hidden;
   }
 }
+
+.PokeCard-types__container {
+  width: 100%;
+  display: flex;
+  margin-bottom: 8px;
+  justify-content: space-around;
+}
+
+.types {
+  width: 45%;
+  height: 20px;
+  border-radius: 12px;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+.dark {
+  background-color: #755343;
+}
+
+.rock {
+  background-color: #bbaa66;
+}
+
+.flying {
+  background-color: #8899ff;
+}
+
+.ground {
+  background-color: #ddbb55;
+}
+
+.psychic {
+  background-color: #ef3f7a;
+}
+
+.normal {
+  background-color: #a0a2a0;
+}
+
+.fighting {
+  background-color: #ff8100;
+}
+
+.ice {
+  background-color: #3dd9ff;
+}
+
+.fairy {
+  background-color: #ef70ef;
+}
+
+.fire {
+  background-color: #e72324;
+}
+
+.ghost {
+  background-color: #703f70;
+}
+
+.electric {
+  background-color: #f9c000;
+}
+
+.dragon {
+  background-color: #4f60e2;
+}
+
+.bug {
+  background-color: #92a212;
+}
+.water {
+  background-color: #2481ef;
+}
+
+.steel {
+  background-color: #60a2b9;
+}
+.grass {
+  background-color: #3da224;
+}
+
+.poison {
+  background-color: #923fcc;
+}
