@@ -1,5 +1,6 @@
 import { useRoutes, BrowserRouter } from "react-router-dom";
 import { Home } from "../Home";
+import { PokemonProvider } from "../../Context";
 import { PokeInfo } from "../PokeInfo";
 import { PokeTeam } from "../PokeTeam";
 import { NotFound } from "../NotFound";
@@ -18,10 +19,12 @@ const AppRoutes = () => {
 
 function App() {
   return (
-    <BrowserRouter>
-      <AppRoutes />
-      <Navbar />
-    </BrowserRouter>
+    <PokemonProvider>
+      <BrowserRouter>
+        <AppRoutes />
+        <Navbar />
+      </BrowserRouter>
+    </PokemonProvider>
   );
 }
 

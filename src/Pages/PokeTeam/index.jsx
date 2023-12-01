@@ -1,7 +1,11 @@
 import React from "react";
-
+import { Layout } from "../../Components/Layout";
 function PokeTeam() {
-  return <div>PokeTeam</div>;
+  return (
+    <Layout>
+      <div>PokeTeam</div>
+    </Layout>
+  );
 }
 
 export { PokeTeam };
