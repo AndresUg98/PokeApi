@@ -2,6 +2,9 @@
   width: 100%;
   height: 537px;
   display: flex;
+
+  overflow-x: scroll;
+
   flex-direction: column;
   align-items: center;
   background-color: #ffdede;
@@ -28,12 +31,12 @@
   display: flex;
   width: 90%;
   height: 298px;
-  border: 1px solid black;
+
   flex-direction: column;
   align-items: center;
 }
 
-.PokeInfo-dataContianer__entry {
+.dataContianer__entry {
   text-align: center;
   h4 {
     font-size: 1.5rem;
@@ -46,4 +49,25 @@
     font-weight: 400;
     margin: 0;
   }
+}
+
+.dataContainer__mesurments {
+  display: flex;
+  gap: 5px;
+  margin-top: 25px;
+  p {
+    font-size: 0.75rem;
+    font-weight: 300;
+    margin: 0;
+    text-align: center;
+  }
+}
+
+.dataContiner__abilities {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  margin-left: 17px;
+  font-size: 0.81rem;
+  font-weight: 400;
 }
