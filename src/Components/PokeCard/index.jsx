@@ -1,15 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
+import { PokemonContext } from "../../Context";
 import "./PokeCard.scss";
-function PokeCard({ name, img, types }) {
+
+function PokeCard({ data }) {
+  const context = useContext(PokemonContext);
+  //sending the pokemon info to the PokeInfo card
+  const showPokemon = (pokemonInfo) => {
+    context.openPokeInfo();
+    context.setPokemonToShow(pokemonInfo);
+  };
   return (
-    <div className="PokeCard-contianer">
+    <div className="PokeCard-contianer" onClick={() => showPokemon(data)}>
       <figure className="PokeCard-img">
-        <img src={img} alt="" />
+        <img src={data.img} alt="" />
       </figure>
-      <p>{name}</p>
+      <p>{data.name}</p>
       <span className="PokeCard-types__container">
         {/* imprimiedo los tipos de los pokemon */}
-        {types?.map((type) => (
+        {data.types?.map((type) => (
           <p className={type + " types"}>{type}</p>
         ))}
       </span>

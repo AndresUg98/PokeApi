@@ -1,24 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
+import { PokemonContext } from "../../Context";
 import { Layout } from "../../Components/Layout";
 import { Chart } from "chart.js/auto";
-
 import { Bar } from "react-chartjs-2";
 import "./PokeInfo.scss";
 function PokeInfo() {
+  const context = useContext(PokemonContext);
+
+  console.log("Pokemon to show ", context.pokemonToShow);
   return (
     <Layout>
       <div className="PokemonInfo-container">
         <figure className="PokemonInfo-imgContainer">
           <img
             className="imf"
-            src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/155.png"
+            src={context.pokemonToShow.img}
             alt=""
             srcset=""
           />
         </figure>
         <div className="PokemonInfo-dataContainer">
           <span className="dataContianer__entry">
-            <h4>Cyndaquil</h4>
+            <h4>{context.pokemonToShow.name}</h4>
             <p>
               It has a timid nature. If it is startled, the flames on its back
               burn more vigorously.
@@ -27,18 +30,23 @@ function PokeInfo() {
 
           <span className="dataContainer__mesurments">
             <p>
-              <b> Weight:</b> 7.9kg
+              <b> Weight:</b> {context.pokemonToShow.weight}
             </p>
             <p>
-              <b>Height:</b> 0.5m
+              <b>Height:</b> {context.pokemonToShow.height}
             </p>
             <p>
-              <b>Dex n°:</b> 155
+              <b>Dex n°:</b> {context.pokemonToShow.order}
             </p>
           </span>
           <span className="dataContiner__abilities">
-            <p>Type: fire</p>
-            <p>Abilities: Blaze, Flash Fire</p>
+            {context.pokemonToShow.types?.map((type) => (
+              <p>{type}</p>
+            ))}
+
+            {context.pokemonToShow.ability?.map((ability) => (
+              <p>Abilities: {ability}</p>
+            ))}
           </span>
 
           <div className="dataContainer__stats">

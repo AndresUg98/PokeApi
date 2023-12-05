@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { SearchBar } from "../../Components/SearchBar";
 import { PokeCard } from "../../Components/PokeCard";
+import { PokeInfo } from "../../Components/PokeInfo";
 import "./Home.scss";
 
 function Home() {
@@ -22,12 +23,19 @@ function Home() {
 
         //Obtaining the types of the poe=kemon
         let types = poke.types.map((type) => type.type.name);
+        let abilities = poke.abilities.map((ability) => ability.ability.name);
+        let stats = poke.stats.map((stat) => stat.base_stat);
 
         return {
           id: poke.id,
           name: poke.name,
           img: poke.sprites.other["official-artwork"].front_default,
+          weight: poke.weight,
+          height: poke.height,
+          order: poke.order,
           types: types,
+          ability: abilities,
+          stats: stats,
         };
       });
 
@@ -58,16 +66,10 @@ function Home() {
         <PokeCard /> */}
 
         {pokemons?.map((pokemon) => {
-          return (
-            <PokeCard
-              key={pokemon.name}
-              name={pokemon.name}
-              img={pokemon.img}
-              types={pokemon.types}
-            />
-          );
+          return <PokeCard key={pokemon.name} data={pokemon} />;
         })}
       </section>
+      <PokeInfo />
     </div>
   );
 }

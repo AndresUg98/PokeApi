@@ -1,8 +1,29 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 import React from "react";
 
-const PokemonContext = createContext();
+export const PokemonContext = createContext();
 
 export const PokemonProvider = ({ children }) => {
-  return <PokemonContext.Provider>{children}</PokemonContext.Provider>;
+  //Open PokemonInfo
+  const [isPokeInfoOpen, setIsPokeInfoOpen] = useState(false);
+
+  const openPokeInfo = () => setIsPokeInfoOpen(true);
+  const closePokeInfo = () => setIsPokeInfoOpen(false);
+
+  //Pokemon info . show pokemon info
+  const [pokemonToShow, setPokemonToShow] = useState({});
+
+  return (
+    <PokemonContext.Provider
+      value={{
+        openPokeInfo,
+        closePokeInfo,
+        isPokeInfoOpen,
+        pokemonToShow,
+        setPokemonToShow,
+      }}
+    >
+      {children}
+    </PokemonContext.Provider>
+  );
 };
