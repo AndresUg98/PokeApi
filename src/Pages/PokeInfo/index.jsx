@@ -40,36 +40,33 @@ function PokeInfo() {
             <p>Type: fire</p>
             <p>Abilities: Blaze, Flash Fire</p>
           </span>
-          <div className="dataContainer__stats">
-            <span>
-              <p>HP: 45</p>
-              <p>Attack: 49</p>
-              <p>Defense: 65</p>
-              <p>S.Atack: 65</p>
-              <p>S.Defense: 65</p>
-              <p>Speed: 45</p>
-            </span>
-          </div>
 
-          <Bar
-            data={{
-              labels: [
-                "HP",
-                "Attack",
-                "Defense",
-                "S.Attack",
-                "S.Defense",
-                "Speed",
-              ],
-              datasets: [
-                {
-                  axis: "y",
-                  label: "Stats",
-                  data: [45, 49, 65, 65, 65, 45],
-                },
-              ],
-            }}
-          />
+          <div className="dataContainer__stats">
+            <Bar
+              data={{
+                labels: ["HP", "Atk", "Def", "Sp.Atk", "Sp.Def", "Spd"],
+                datasets: [
+                  {
+                    label: "Basic Stats",
+                    data: [45, 49, 65, 65, 65, 45],
+                    backgroundColor: [
+                      "rgba(61, 225, 80, 0.8)",
+                      "rgba(235, 34, 34, 0.8)",
+                      "rgba(36, 34, 235, 0.8)",
+                      "rgba(239, 83, 231, 0.88)",
+                      "rgba(83, 208, 239, 0.88)",
+                      "rgba(246, 244, 44, 0.88)",
+                    ],
+                    borderRadius: 15,
+                  },
+                ],
+              }}
+              options={{
+                aspectRatio: false,
+                indexAxis: "y",
+              }}
+            />
+          </div>
         </div>
       </div>
     </Layout>
