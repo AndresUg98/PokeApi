@@ -5,8 +5,8 @@ import "./Layout.scss";
 function Layout({ children }) {
   const context = useContext(PokemonContext);
   return (
-    <div className={`${context.isPokeInfoOpen ? "Layout-container" : "close"}`}>
-      <XCircleIcon className="x-Icon" onClick={() => context.closePokeInfo()} />
+    <div className="Layout-container">
+      {/* <XCircleIcon className="x-Icon" onClick={() => context.closePokeInfo()} /> */}
       {children}
     </div>
   );

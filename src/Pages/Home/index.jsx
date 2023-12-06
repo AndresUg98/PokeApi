@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { PokemonContext } from "../../Context";
 import { SearchBar } from "../../Components/SearchBar";
 import { PokeCard } from "../../Components/PokeCard";
-import { PokeInfo } from "../../Components/PokeInfo";
 import "./Home.scss";
 
 function Home() {
   const [pokemons, setPokemons] = useState(null);
-  const pokeApi = "https://pokeapi.co/api/v2/pokemon?limit=1008";
+  const pokeApi = "https://pokeapi.co/api/v2/pokemon?limit=151";
   //  consumiendo api pokemon
 
   useEffect(() => {
@@ -47,13 +47,15 @@ function Home() {
           ability: abilities,
           stats: stats,
         };
-      });
+      }, context.setLoading(false));
 
       setPokemons(await Promise.all(NewPokemons));
     };
 
     getPokemons();
   }, []);
+
+  const context = useContext(PokemonContext);
 
   return (
     <div className="Home">
@@ -62,12 +64,14 @@ function Home() {
         <h2>¡Gotta chatch'em all!</h2>
         <SearchBar />
       </section>
+
       <section className="Home-content">
+        {context.loading && <p>Estamos cargando</p>}
+        {context.error && <p>Error</p>}
         {pokemons?.map((pokemon) => {
           return <PokeCard key={pokemon.name} data={pokemon} />;
         })}
       </section>
-      <PokeInfo />
     </div>
   );
 }

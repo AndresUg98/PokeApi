@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { PokemonContext } from "../../Context";
-import { Layout } from "../../Components/Layout";
+import { Layout } from "../../Components/Layout/";
 import { Chart } from "chart.js/auto";
 import { Bar } from "react-chartjs-2";
 import "./PokeInfo.scss";
@@ -22,13 +22,23 @@ function PokeInfo() {
 
           <span className="dataContainer__mesurments">
             <p>
-              <b> Weight:</b> {context.pokemonToShow.weight} lbs
+              <b>
+                {" "}
+                Weight:<br></br>
+              </b>{" "}
+              {context.pokemonToShow.weight} lbs
             </p>
             <p>
-              <b>Height:</b> {context.pokemonToShow.height} ft
+              <b>
+                Height:<br></br>
+              </b>{" "}
+              {context.pokemonToShow.height} ft
             </p>
             <p>
-              <b>Dex n°:</b> {context.pokemonToShow.order}
+              <b>
+                Dex n°:<br></br>
+              </b>{" "}
+              {context.pokemonToShow.order}
             </p>
           </span>
           <span className="dataContiner__type">
@@ -38,7 +48,7 @@ function PokeInfo() {
             ))}
           </span>
           <span className="dataContiner__abilities">
-            <p>Abilities:</p>
+            <p>Abilities: </p>
             {context.pokemonToShow.ability?.map((ability) => (
               <p>{ability}</p>
             ))}

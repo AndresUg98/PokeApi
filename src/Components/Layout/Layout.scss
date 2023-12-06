@@ -1,12 +1,11 @@
 .Layout-container {
-  width: 100%;
-  height: 100vh;
-  position: fixed;
-  top: 0%;
-  right: 0;
-  border: 1px solid black;
+  width: 90%;
+  height: 570px;
+  margin: 10px auto;
   background-color: white;
   border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.37);
 }
 
 .x-Icon {
