@@ -26,9 +26,19 @@ function Home() {
         let abilities = poke.abilities.map((ability) => ability.ability.name);
         let stats = poke.stats.map((stat) => stat.base_stat);
 
+        //obtaining the description of each pokemon
+        let res;
+        res = await fetch(poke["species"]["url"]);
+        let pokemonDescription = await res.json();
+        pokemonDescription =
+          pokemonDescription["flavor_text_entries"][0]["flavor_text"];
+
+        //console.log(pokemonDescription);
+
         return {
           id: poke.id,
           name: poke.name,
+          entry: pokemonDescription,
           img: poke.sprites.other["official-artwork"].front_default,
           weight: poke.weight,
           height: poke.height,
@@ -45,11 +55,6 @@ function Home() {
     getPokemons();
   }, []);
 
-  // console.log(
-  //   pokemons?.map((pokemon) => {
-  //     return pokemon.types;
-  //   })
-  // );
   return (
     <div className="Home">
       <section className="Home-header">
@@ -58,13 +63,6 @@ function Home() {
         <SearchBar />
       </section>
       <section className="Home-content">
-        {/* <PokeCard />
-        <PokeCard />
-        <PokeCard />
-        <PokeCard />
-        <PokeCard />
-        <PokeCard /> */}
-
         {pokemons?.map((pokemon) => {
           return <PokeCard key={pokemon.name} data={pokemon} />;
         })}

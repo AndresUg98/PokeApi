@@ -12,40 +12,35 @@ function PokeInfo() {
     <Layout>
       <div className="PokemonInfo-container">
         <figure className="PokemonInfo-imgContainer">
-          <img
-            className="imf"
-            src={context.pokemonToShow.img}
-            alt=""
-            srcset=""
-          />
+          <img className="imf" src={context.pokemonToShow.img} alt="" />
         </figure>
         <div className="PokemonInfo-dataContainer">
           <span className="dataContianer__entry">
             <h4>{context.pokemonToShow.name}</h4>
-            <p>
-              It has a timid nature. If it is startled, the flames on its back
-              burn more vigorously.
-            </p>
+            <p>{context.pokemonToShow.entry}</p>
           </span>
 
           <span className="dataContainer__mesurments">
             <p>
-              <b> Weight:</b> {context.pokemonToShow.weight}
+              <b> Weight:</b> {context.pokemonToShow.weight} lbs
             </p>
             <p>
-              <b>Height:</b> {context.pokemonToShow.height}
+              <b>Height:</b> {context.pokemonToShow.height} ft
             </p>
             <p>
               <b>Dex n°:</b> {context.pokemonToShow.order}
             </p>
           </span>
-          <span className="dataContiner__abilities">
+          <span className="dataContiner__type">
+            <p>Type:</p>
             {context.pokemonToShow.types?.map((type) => (
-              <p>{type}</p>
+              <p className={type + " InfoTypes"}>{type}</p>
             ))}
-
+          </span>
+          <span className="dataContiner__abilities">
+            <p>Abilities:</p>
             {context.pokemonToShow.ability?.map((ability) => (
-              <p>Abilities: {ability}</p>
+              <p>{ability}</p>
             ))}
           </span>
 
@@ -56,7 +51,7 @@ function PokeInfo() {
                 datasets: [
                   {
                     label: "Basic Stats",
-                    data: [45, 49, 65, 65, 65, 45],
+                    data: context.pokemonToShow.stats,
                     backgroundColor: [
                       "rgba(61, 225, 80, 0.8)",
                       "rgba(235, 34, 34, 0.8)",

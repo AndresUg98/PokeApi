@@ -18,7 +18,9 @@ function PokeCard({ data }) {
       <span className="PokeCard-types__container">
         {/* imprimiedo los tipos de los pokemon */}
         {data.types?.map((type) => (
-          <p className={type + " types"}>{type}</p>
+          <p key={type} className={type + " types"}>
+            {type}
+          </p>
         ))}
       </span>
     </div>
