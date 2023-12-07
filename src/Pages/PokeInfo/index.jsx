@@ -49,9 +49,11 @@ function PokeInfo() {
           </span>
           <span className="dataContiner__abilities">
             <p>Abilities: </p>
-            {context.pokemonToShow.ability?.map((ability) => (
-              <p>{ability}</p>
-            ))}
+            <span>
+              {context.pokemonToShow.ability?.map((ability) => (
+                <p>{ability}</p>
+              ))}
+            </span>
           </span>
 
           <div className="dataContainer__stats">
