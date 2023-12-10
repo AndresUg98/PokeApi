@@ -5,6 +5,7 @@ import { PokemonContext } from "../../Context";
 import { SearchBar } from "../../Components/SearchBar";
 import { PokeCard } from "../../Components/PokeCard";
 import "./Home.scss";
+import { Loader } from "../../Components/Loader";
 
 function Home() {
   const { pokemons, loadPokemons, loadMorePokemons } = usePokemons();
@@ -25,7 +26,7 @@ function Home() {
         dataLength={pokemons.length}
         next={loadPokemons}
         hasMore={loadMorePokemons}
-        loader={<h4>Cargando</h4>}
+        loader={<h4>Cargando..</h4>}
         endMessage={<h4>No hay mas</h4>}
         className="Home-content"
       >
