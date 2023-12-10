@@ -6,10 +6,14 @@ function usePokemons() {
 
   //Getting all the pokemons and putting then into the pokemons state
   const [pokemons, setPokemons] = useState([]);
+  //state for filtering pokemons for searching them
+  const [filteredPokemons, setFilteredPokemons] = useState(null);
 
   const [siguienteUrl, setSiguienteUrl] = useState("");
 
   const [loadMorePokemons, setLoadMorePokemons] = useState(true);
+
+  const [searchPokemonName, setSearchPokemonName] = useState(null);
 
   const getPokemons = async (url = URL_DEFAULT) => {
     try {
@@ -78,10 +82,26 @@ function usePokemons() {
     obtenerPokemones();
   }, []);
 
+  const filteredPokemonsByName = (pokemons, searchPokemonName) => {
+    return pokemons?.filter((pokemon) =>
+      pokemon.name.toLowerCase().includes(searchPokemonName)
+    );
+  };
+
+  useEffect(() => {
+    if (searchPokemonName) {
+      setFilteredPokemons(filteredPokemonsByName(pokemons, searchPokemonName));
+    }
+  }, [pokemons, searchPokemonName]);
+
+  console.log(filteredPokemons);
+
   return {
     pokemons,
     loadPokemons,
     loadMorePokemons,
+    searchPokemonName,
+    setSearchPokemonName,
   };
 }
 
