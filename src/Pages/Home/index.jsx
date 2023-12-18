@@ -1,6 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { usePokemons } from "../../hooks/usePokemons";
+import React, { useContext } from "react";
 import { PokemonContext } from "../../Context";
 import { SearchBar } from "../../Components/SearchBar";
 import { PokeCard } from "../../Components/PokeCard";
@@ -8,11 +6,25 @@ import "./Home.scss";
 import { Loader } from "../../Components/Loader";
 
 function Home() {
-  const { pokemons, loadPokemons, loadMorePokemons } = usePokemons();
-
-  //console.log(pokemons);
-
   const context = useContext(PokemonContext);
+
+  const renderView = () => {
+    if (context.searchPokemon?.length > 0) {
+      if (context.filteredpokemons?.length > 0) {
+        return context.filteredpokemons?.map((pokemon) => {
+          return <PokeCard key={pokemon.name} data={pokemon} />;
+        });
+      } else {
+        return <div>Pokemon not found</div>;
+      }
+    } else {
+      {
+        return context.pokemons?.map((pokemon) => {
+          return <PokeCard key={pokemon.name} data={pokemon} />;
+        });
+      }
+    }
+  };
 
   return (
     <div className="Home">
@@ -21,21 +33,8 @@ function Home() {
         <h2>¡Gotta chatch'em all!</h2>
         <SearchBar />
       </section>
-
-      <InfiniteScroll
-        dataLength={pokemons.length}
-        next={loadPokemons}
-        hasMore={loadMorePokemons}
-        loader={<h4>Cargando..</h4>}
-        endMessage={<h4>No hay mas</h4>}
-        className="Home-content"
-      >
-        {/* {context.loading && <p>Estamos cargando</p>}
-        {context.error && <p>Error</p>} */}
-        {pokemons?.map((pokemon) => {
-          return <PokeCard key={pokemon.name} data={pokemon} />;
-        })}
-      </InfiniteScroll>
+      <section className="Home-content">{renderView()}</section>
+      <PokeInfo />
     </div>
   );
 }
