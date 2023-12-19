@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { PokemonContext } from "../../Context";
 import { SearchBar } from "../../Components/SearchBar";
+import { PokeInfo } from "../../Components/PokeInfo";
 import { PokeCard } from "../../Components/PokeCard";
 import "./Home.scss";
-import { Loader } from "../../Components/Loader";
 
 function Home() {
   const context = useContext(PokemonContext);
