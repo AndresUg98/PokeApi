@@ -48,31 +48,32 @@ function PokeInfo() {
             ))}
           </span>
         </div>
-
-        <Bar
-          data={{
-            labels: ["HP", "Atk", "Def", "Sp.Atk", "Sp.Def", "Spd"],
-            datasets: [
-              {
-                label: "Basic Stats",
-                data: context.pokemonToShow.stats,
-                backgroundColor: [
-                  "rgba(61, 225, 80, 0.8)",
-                  "rgba(235, 34, 34, 0.8)",
-                  "rgba(36, 34, 235, 0.8)",
-                  "rgba(239, 83, 231, 0.88)",
-                  "rgba(83, 208, 239, 0.88)",
-                  "rgba(246, 244, 44, 0.88)",
-                ],
-                borderRadius: 15,
-              },
-            ],
-          }}
-          options={{
-            aspectRatio: false,
-            indexAxis: "y",
-          }}
-        />
+        <div className="statsChart">
+          <Bar
+            data={{
+              labels: ["HP", "Atk", "Def", "Sp.Atk", "Sp.Def", "Spd"],
+              datasets: [
+                {
+                  label: "Basic Stats",
+                  data: context.pokemonToShow.stats,
+                  backgroundColor: [
+                    "rgba(61, 225, 80, 0.8)",
+                    "rgba(235, 34, 34, 0.8)",
+                    "rgba(36, 34, 235, 0.8)",
+                    "rgba(239, 83, 231, 0.88)",
+                    "rgba(83, 208, 239, 0.88)",
+                    "rgba(246, 244, 44, 0.88)",
+                  ],
+                  borderRadius: 15,
+                },
+              ],
+            }}
+            options={{
+              aspectRatio: false,
+              indexAxis: "y",
+            }}
+          />
+        </div>
       </div>
     </div>
   );

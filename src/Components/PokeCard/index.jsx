@@ -10,8 +10,7 @@ function PokeCard({ data }) {
 
   //sending the pokemon info to the PokeInfo card
   const showPokemon = (pokemonInfo) => {
-    //context.openPokeInfo();
-    navigate("../../PokeInfo");
+    context.openPokeInfo();
     context.setPokemonToShow(pokemonInfo);
   };
 

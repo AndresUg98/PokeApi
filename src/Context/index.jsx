@@ -84,6 +84,9 @@ export const PokemonProvider = ({ children }) => {
   return (
     <PokemonContext.Provider
       value={{
+        openPokeInfo,
+        closePokeInfo,
+        isPokeInfoOpen,
         pokemonToShow,
         setPokemonToShow,
         pokemons,
