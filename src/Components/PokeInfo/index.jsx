@@ -31,7 +31,7 @@ function PokeInfo() {
             <b>Height:</b> {context.pokemonToShow.height} ft
           </p>
           <p>
-            <b>Dex n°:</b> {context.pokemonToShow.order}
+            <b>Dex n°:</b> {context.pokemonToShow.id}
           </p>
         </span>
         <span className="dataContiner__type">

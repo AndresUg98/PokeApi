@@ -11,7 +11,7 @@ export const PokemonProvider = ({ children }) => {
   // get pokemons
   const [filteredpokemons, setFilteredpokemons] = useState(null);
   //stores what we are typing
-  const [searchPokemon, setSearchPokemon] = useState("");
+  const [searchPokemon, setSearchPokemon] = useState(null);
 
   const pokeApi = "https://pokeapi.co/api/v2/pokemon?limit=1008";
   //  consumiendo api pokemon
@@ -69,15 +69,30 @@ export const PokemonProvider = ({ children }) => {
   const [pokemonToShow, setPokemonToShow] = useState({});
   // get pokemons by name
 
-  const filteredPokemonsByName = (pokemons, searchPokemon) => {
-    return pokemons?.filter((pokemon) =>
-      pokemon.name.toLowerCase().includes(searchPokemon.toLowerCase())
-    );
+  const filteredPokemons = (pokemons, searchPokemon) => {
+    if (isNaN(searchPokemon)) {
+      return pokemons?.filter(
+        (pokemon) =>
+          pokemon.name.toLowerCase().includes(searchPokemon.toLowerCase()) ||
+          pokemon.types.includes(searchPokemon.toLowerCase())
+      );
+
+      //   return pokemons?.filter((pokemon) =>
+      //   pokemon.name.toLowerCase().includes(searchPokemon.toLowerCase())
+      // );
+    } else {
+      return pokemons?.filter(
+        (pokemon) => pokemon.id == parseInt(searchPokemon)
+      );
+    }
   };
+
+  // const pokemonTypes = pokemons.map((pokemon) => pokemon.types);
+  // console.log(pokemonTypes?.map((type) => type));
 
   useEffect(() => {
     if (searchPokemon)
-      setFilteredpokemons(filteredPokemonsByName(pokemons, searchPokemon));
+      setFilteredpokemons(filteredPokemons(pokemons, searchPokemon));
   }, [pokemons, searchPokemon]);
 
   console.log(filteredpokemons);

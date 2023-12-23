@@ -1,11 +1,12 @@
-import React from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import React, { useContext } from "react";
+import { NavLink } from "react-router-dom";
 import Pokeball from "../../assets/icons/pokeball.png";
 import Pokedex from "../../assets/icons/pokedex.png";
 import Back from "../../assets/icons/back.png";
+import { PokemonContext } from "../../Context";
 import "./Navbar.scss";
 function Navbar() {
-  const navigate = useNavigate();
+  const context = useContext(PokemonContext);
   return (
     <nav className="Navbar">
       <ul className="Navbar-elements">
@@ -20,7 +21,7 @@ function Navbar() {
           </NavLink>
         </li>
         <li className="Navbar-back">
-          <NavLink onClick={() => navigate(-1)}>
+          <NavLink onClick={() => context.closePokeInfo()}>
             <img src={Back} alt="" />
           </NavLink>
         </li>
