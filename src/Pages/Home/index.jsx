@@ -33,7 +33,10 @@ function Home() {
         <h2>¡Gotta chatch'em all!</h2>
         <SearchBar />
       </section>
-      <section className="Home-content">{renderView()}</section>
+      <section className="Home-content">
+        {renderView()}
+        {/* <button onClick={context.morePokemons}>mostrar mas</button> */}
+      </section>
       <PokeInfo />
     </div>
   );

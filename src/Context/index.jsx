@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import React from "react";
+const URL_DEFAULT = `https://pokeapi.co/api/v2/pokemon?limit=63&offset=0`;
 
 export const PokemonContext = createContext();
 
@@ -8,23 +9,25 @@ export const PokemonProvider = ({ children }) => {
   const [isPokeInfoOpen, setIsPokeInfoOpen] = useState(false);
   // get pokemons
   const [pokemons, setPokemons] = useState(null);
-  // get pokemons
+  //
+  const [nextUrl, setNextUrl] = useState("");
+
+  const [loadMore, setLoadMore] = useState(true);
+
   const [filteredpokemons, setFilteredpokemons] = useState(null);
   //stores what we are typing
   const [searchPokemon, setSearchPokemon] = useState(null);
 
-  const pokeApi = "https://pokeapi.co/api/v2/pokemon?limit=1008";
   //  consumiendo api pokemon
+  const getPokemons = async (url = URL_DEFAULT) => {
+    //Recuperar la lista de los pokemones
+    const response = await fetch(url);
+    const pokemonArray = await response.json();
 
-  useEffect(() => {
-    const getPokemons = async () => {
-      //Recuperar la lista de los pokemones
-      const response = await fetch(pokeApi);
-      const pokemonArray = await response.json();
+    const { next, results } = pokemonArray;
 
-      const { results } = pokemonArray;
-
-      const NewPokemons = results.map(async (pokemon) => {
+    const NewPokemons = await Promise.all(
+      results.map(async (pokemon) => {
         const response = await fetch(pokemon.url);
         const poke = await response.json();
 
@@ -54,12 +57,32 @@ export const PokemonProvider = ({ children }) => {
           ability: abilities,
           stats: stats,
         };
-      });
+      })
+    );
 
-      setPokemons(await Promise.all(NewPokemons));
-    };
+    // setPokemons(NewPokemons);
+    return { next, NewPokemons };
+  };
 
-    getPokemons();
+  const obtenerPokemones = async () => {
+    const { next, NewPokemons } = await getPokemons();
+    setPokemons(NewPokemons);
+    setNextUrl(next);
+  };
+
+  const morePokemons = async () => {
+    const { next, NewPokemons } = await getPokemons(nextUrl);
+    setPokemons((prev) => [...prev, ...NewPokemons]);
+    next == null && setLoadMore(false);
+    setNextUrl(next);
+  };
+
+  useEffect(() => {
+    obtenerPokemones();
+
+    morePokemons();
+
+    //getPokemons();
   }, []);
 
   const openPokeInfo = () => setIsPokeInfoOpen(true);
@@ -95,7 +118,7 @@ export const PokemonProvider = ({ children }) => {
       setFilteredpokemons(filteredPokemons(pokemons, searchPokemon));
   }, [pokemons, searchPokemon]);
 
-  console.log(filteredpokemons);
+  //console.log(filteredpokemons);
   return (
     <PokemonContext.Provider
       value={{
@@ -109,6 +132,7 @@ export const PokemonProvider = ({ children }) => {
         searchPokemon,
         setSearchPokemon,
         filteredpokemons,
+        morePokemons,
       }}
     >
       {children}
