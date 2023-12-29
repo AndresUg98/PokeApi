@@ -12,7 +12,7 @@ export const PokemonProvider = ({ children }) => {
   //
   const [nextUrl, setNextUrl] = useState("");
 
-  const [loadMore, setLoadMore] = useState(true);
+  const [loadMorePokemons, setLoadMorePokemons] = useState(true);
 
   const [filteredpokemons, setFilteredpokemons] = useState(null);
   //stores what we are typing
@@ -20,50 +20,54 @@ export const PokemonProvider = ({ children }) => {
 
   //  consumiendo api pokemon
   const getPokemons = async (url = URL_DEFAULT) => {
-    //Recuperar la lista de los pokemones
-    const response = await fetch(url);
-    const pokemonArray = await response.json();
+    try {
+      //Recuperar la lista de los pokemones
+      const response = await fetch(url);
+      const pokemonArray = await response.json();
+      // we sustract the next and results attributes from the response, next redirect you to the next 20 results
+      const { next, results } = pokemonArray;
 
-    const { next, results } = pokemonArray;
+      const NewPokemons = await Promise.all(
+        results.map(async (pokemon) => {
+          const response = await fetch(pokemon.url);
+          const poke = await response.json();
 
-    const NewPokemons = await Promise.all(
-      results.map(async (pokemon) => {
-        const response = await fetch(pokemon.url);
-        const poke = await response.json();
+          //Obtaining the types of the poekemon
+          let types = poke.types.map((type) => type.type.name);
+          //Obtaining the abilities of the poekemon
+          let abilities = poke.abilities.map((ability) => ability.ability.name);
+          //Obtaining the stats of the poekemon
+          let stats = poke.stats.map((stat) => stat.base_stat);
 
-        //Obtaining the types of the poe=kemon
-        let types = poke.types.map((type) => type.type.name);
-        let abilities = poke.abilities.map((ability) => ability.ability.name);
-        let stats = poke.stats.map((stat) => stat.base_stat);
+          //obtaining the description of each pokemon
+          let res;
+          res = await fetch(poke["species"]["url"]);
+          let pokemonDescription = await res.json();
+          pokemonDescription =
+            pokemonDescription["flavor_text_entries"][0]["flavor_text"];
 
-        //obtaining the description of each pokemon
-        let res;
-        res = await fetch(poke["species"]["url"]);
-        let pokemonDescription = await res.json();
-        pokemonDescription =
-          pokemonDescription["flavor_text_entries"][0]["flavor_text"];
+          //console.log(pokemonDescription);
 
-        //console.log(pokemonDescription);
-
-        return {
-          id: poke.id,
-          name: poke.name,
-          entry: pokemonDescription,
-          img: poke.sprites.other["official-artwork"].front_default,
-          weight: poke.weight,
-          height: poke.height,
-          order: poke.order,
-          types: types,
-          ability: abilities,
-          stats: stats,
-        };
-      })
-    );
-
-    // setPokemons(NewPokemons);
-    return { next, NewPokemons };
+          return {
+            id: poke.id,
+            name: poke.name,
+            entry: pokemonDescription,
+            img: poke.sprites.other["official-artwork"].front_default,
+            weight: poke.weight,
+            height: poke.height,
+            order: poke.id,
+            types: types,
+            ability: abilities,
+            stats: stats,
+          };
+        })
+      );
+      return { next, NewPokemons };
+    } catch (error) {
+      // if the pokemon that we are calling doesn't have a property that we need, we stop calling for more pokemons
+      setLoadMorePokemons(false);
+    }
   };
-
   const obtenerPokemones = async () => {
     const { next, NewPokemons } = await getPokemons();
     setPokemons(NewPokemons);
@@ -73,7 +77,7 @@ export const PokemonProvider = ({ children }) => {
   const morePokemons = async () => {
     const { next, NewPokemons } = await getPokemons(nextUrl);
     setPokemons((prev) => [...prev, ...NewPokemons]);
-    next == null && setLoadMore(false);
+    next == null && setLoadMorePokemons(false);
     setNextUrl(next);
   };
 
@@ -118,6 +122,7 @@ export const PokemonProvider = ({ children }) => {
       setFilteredpokemons(filteredPokemons(pokemons, searchPokemon));
   }, [pokemons, searchPokemon]);
 
+  //morePokemons();
   //console.log(filteredpokemons);
   return (
     <PokemonContext.Provider
@@ -133,6 +138,7 @@ export const PokemonProvider = ({ children }) => {
         setSearchPokemon,
         filteredpokemons,
         morePokemons,
+        loadMorePokemons,
       }}
     >
       {children}

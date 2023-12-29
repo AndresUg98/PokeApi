@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { PokemonContext } from "../../Context";
 import { SearchBar } from "../../Components/SearchBar";
 import { PokeInfo } from "../../Components/PokeInfo";
@@ -7,6 +7,19 @@ import "./Home.scss";
 
 function Home() {
   const context = useContext(PokemonContext);
+  // const handleClick = () => {
+  //   context.morePokemons();
+  //   context.loadMorePokemons(true);
+  // };
+
+  const button = document.getElementById("loadMorePokemons");
+
+  function clickButton() {
+    button.click(context.morePokemons());
+  }
+
+  // Llamar a la función que simula el clic cada 5 segundos
+  setInterval(clickButton, 10000);
 
   const renderView = () => {
     if (context.searchPokemon?.length > 0) {
@@ -35,7 +48,8 @@ function Home() {
       </section>
       <section className="Home-content">
         {renderView()}
-        {/* <button onClick={context.morePokemons}>mostrar mas</button> */}
+        <button id="loadMorePokemons">mostrar mas</button>
+        {/* <button onClick={context.morePokemons} id="loadMorePokemons"></button> */}
       </section>
       <PokeInfo />
     </div>
