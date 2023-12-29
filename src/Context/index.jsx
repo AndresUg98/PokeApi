@@ -83,12 +83,11 @@ export const PokemonProvider = ({ children }) => {
       );
     }
   };
-  const copyArray = pokemons;
 
   useEffect(() => {
     if (searchPokemon)
-      setFilteredpokemons(filteredPokemons(copyArray, searchPokemon));
-  }, [copyArray, searchPokemon]);
+      setFilteredpokemons(filteredPokemons(pokemons, searchPokemon));
+  }, [pokemons, searchPokemon]);
 
   return (
     <PokemonContext.Provider

@@ -7,10 +7,6 @@ import "./Home.scss";
 
 function Home() {
   const context = useContext(PokemonContext);
-  // const handleClick = () => {
-  //   context.morePokemons();
-  //   context.loadMorePokemons(true);
-  // };
 
   const renderView = () => {
     if (context.searchPokemon?.length > 0) {
@@ -37,11 +33,7 @@ function Home() {
         <h2>¡Gotta chatch'em all!</h2>
         <SearchBar />
       </section>
-      <section className="Home-content">
-        {renderView()}
-
-        {/* <button onClick={context.morePokemons} id="loadMorePokemons"></button> */}
-      </section>
+      <section className="Home-content">{renderView()}</section>
       <PokeInfo />
     </div>
   );
