@@ -12,15 +12,6 @@ function Home() {
   //   context.loadMorePokemons(true);
   // };
 
-  const button = document.getElementById("loadMorePokemons");
-
-  function clickButton() {
-    button.click(context.morePokemons());
-  }
-
-  // Llamar a la función que simula el clic cada 5 segundos
-  setInterval(clickButton, 10000);
-
   const renderView = () => {
     if (context.searchPokemon?.length > 0) {
       if (context.filteredpokemons?.length > 0) {
@@ -48,7 +39,7 @@ function Home() {
       </section>
       <section className="Home-content">
         {renderView()}
-        <button id="loadMorePokemons">mostrar mas</button>
+
         {/* <button onClick={context.morePokemons} id="loadMorePokemons"></button> */}
       </section>
       <PokeInfo />
