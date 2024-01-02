@@ -1,12 +1,13 @@
 .PokeCard-contianer {
   width: 123px;
+  max-height: 170px;
   display: flex;
-  flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
   background-color: white;
   border-radius: 15px;
   box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.37);
+  box-sizing: border-box;
   p {
     margin-top: 5px;
     margin-right: 0;
@@ -18,7 +19,7 @@
     margin-bottom: 10px;
   }
 }
-.container-favoriteIcon{
+.container-favoriteIcon {
   position: absolute;
   width: 24.38px;
   height: 24.38px;
@@ -30,10 +31,8 @@
   margin-bottom: 0;
   margin-left: 90px;
   border-radius: 50%;
-  background-color:  #fff;
+  background-color: #fff;
   box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.37);
- 
-
 }
 
 .favoriteIcon {
@@ -41,7 +40,6 @@
   height: 15px;
   margin: 0 auto;
   stroke: black;
-  
 }
 
 .PokeCard-img {
