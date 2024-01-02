@@ -89,6 +89,8 @@ export const PokemonProvider = ({ children }) => {
       setFilteredpokemons(filteredPokemons(pokemons, searchPokemon));
   }, [pokemons, searchPokemon]);
 
+  //stores the favorite pokemons of the user and puts them into the 'pokeTeam' page
+  const [favoritePokemons, setFavoritePokemons] = useState([]);
   return (
     <PokemonContext.Provider
       value={{
@@ -102,6 +104,8 @@ export const PokemonProvider = ({ children }) => {
         searchPokemon,
         setSearchPokemon,
         filteredpokemons,
+        favoritePokemons,
+        setFavoritePokemons,
       }}
     >
       {children}

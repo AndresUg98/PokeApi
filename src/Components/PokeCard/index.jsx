@@ -1,12 +1,11 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { PokemonContext } from "../../Context";
+import { GrFavorite } from "react-icons/gr";
 import "./PokeCard.scss";
 
 function PokeCard({ data }) {
   const context = useContext(PokemonContext);
-
-  const navigate = useNavigate();
 
   //sending the pokemon info to the PokeInfo card
   const showPokemon = (pokemonInfo) => {
@@ -14,8 +13,20 @@ function PokeCard({ data }) {
     context.setPokemonToShow(pokemonInfo);
   };
 
+  const addFavoritePokemon = (event, pokemonData) => {
+    event.stopPropagation();
+    context.setFavoritePokemons([...context.favoritePokemons, pokemonData]);
+    console.log("Tus pokemones favoritos son: ", context.favoritePokemons);
+  };
+
   return (
     <div className="PokeCard-contianer" onClick={() => showPokemon(data)}>
+      <figure className="container-favoriteIcon">
+        <GrFavorite
+          className="favoriteIcon"
+          onClick={(event) => addFavoritePokemon(event, data)}
+        />
+      </figure>
       <figure className="PokeCard-img">
         <img src={data.img} alt="" />
       </figure>

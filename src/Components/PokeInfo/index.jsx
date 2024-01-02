@@ -3,6 +3,7 @@ import { PokemonContext } from "../../Context";
 import { Chart } from "chart.js/auto";
 import { Bar } from "react-chartjs-2";
 import { XCircleIcon } from "@heroicons/react/24/solid";
+
 import "./PokeInfo.scss";
 function PokeInfo() {
   const context = useContext(PokemonContext);
@@ -14,6 +15,7 @@ function PokeInfo() {
       }`}
     >
       <XCircleIcon className="x-Icon" onClick={() => context.closePokeInfo()} />
+
       <figure className="PokemonInfo-imgContainer">
         <img className="imf" src={context.pokemonToShow.img} alt="" />
       </figure>
