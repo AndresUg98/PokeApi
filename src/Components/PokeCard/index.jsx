@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { PokemonContext } from "../../Context";
 import { GrFavorite } from "react-icons/gr";
 import "./PokeCard.scss";
+import { render } from "react-dom";
 
 function PokeCard({ data }) {
   const context = useContext(PokemonContext);
@@ -16,17 +17,47 @@ function PokeCard({ data }) {
   const addFavoritePokemon = (event, pokemonData) => {
     event.stopPropagation();
     context.setFavoritePokemons([...context.favoritePokemons, pokemonData]);
-    console.log("Tus pokemones favoritos son: ", context.favoritePokemons);
+    //console.log("Tus pokemones favoritos son: ", context.favoritePokemons);
+  };
+
+  const removeFavoritePokemon = (event, pokemonData) => {
+    event.stopPropagation();
+    const removedPokemon = context.favoritePokemons.filter(
+      (pokemon) => pokemonData.id !== pokemon.id
+    );
+    context.setFavoritePokemons(removedPokemon);
+
+    //console.log("Eliminaste a  ", pokemonData.name);
+  };
+
+  const renderIcon = (id) => {
+    const isInFavoritesPokemons =
+      context.favoritePokemons.filter((pokemon) => pokemon.id === id).length >
+      0;
+    if (isInFavoritesPokemons) {
+      return (
+        <figure className="container-favoriteIcon check">
+          <GrFavorite
+            className="favoriteIcon checkIcon"
+            onClick={(event) => removeFavoritePokemon(event, data)}
+          />
+        </figure>
+      );
+    } else {
+      return (
+        <figure className="container-favoriteIcon">
+          <GrFavorite
+            className="favoriteIcon"
+            onClick={(event) => addFavoritePokemon(event, data)}
+          />
+        </figure>
+      );
+    }
   };
 
   return (
     <div className="PokeCard-contianer" onClick={() => showPokemon(data)}>
-      <figure className="container-favoriteIcon">
-        <GrFavorite
-          className="favoriteIcon"
-          onClick={(event) => addFavoritePokemon(event, data)}
-        />
-      </figure>
+      {renderIcon(data.id)}
       <figure className="PokeCard-img">
         <img src={data.img} alt="" />
       </figure>
