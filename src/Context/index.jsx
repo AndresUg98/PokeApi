@@ -91,6 +91,7 @@ export const PokemonProvider = ({ children }) => {
 
   //stores the favorite pokemons of the user and puts them into the 'pokeTeam' page
   const [favoritePokemons, setFavoritePokemons] = useState([]);
+
   return (
     <PokemonContext.Provider
       value={{
