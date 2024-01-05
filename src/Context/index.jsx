@@ -89,8 +89,17 @@ export const PokemonProvider = ({ children }) => {
       setFilteredpokemons(filteredPokemons(pokemons, searchPokemon));
   }, [pokemons, searchPokemon]);
 
+  const localStoragePokemons = localStorage.getItem("FavoritePokemons_V1");
+  let parsedPokemons;
+  if (!localStoragePokemons) {
+    localStorage.setItem("FavoritePokemons_V1", JSON.stringify([]));
+    parsedPokemons = [];
+  } else {
+    parsedPokemons = JSON.parse(localStoragePokemons);
+  }
+
   //stores the favorite pokemons of the user and puts them into the 'pokeTeam' page
-  const [favoritePokemons, setFavoritePokemons] = useState([]);
+  const [favoritePokemons, setFavoritePokemons] = useState(parsedPokemons);
 
   return (
     <PokemonContext.Provider
