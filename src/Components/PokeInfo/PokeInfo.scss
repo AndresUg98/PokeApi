@@ -24,7 +24,9 @@
   width: 87%;
   height: 239px;
   margin: 0 auto;
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: white;
   border-radius: 0 0 50px 50px;
 
@@ -131,4 +133,21 @@ canvas {
 
 .close {
   display: none;
+}
+
+@media screen and (min-width: 524px) {
+  .PokemonInfo-container {
+    width: 50%;
+    height: 90vh;
+    bottom: 2%;
+    right: 0;
+    border-radius: 15px 0 0 15px;
+    border: 1px solid black;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .PokemonInfo-container {
+    width: 25%;
+  }
 }
