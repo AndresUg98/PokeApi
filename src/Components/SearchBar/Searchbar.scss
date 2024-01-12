@@ -20,3 +20,9 @@
   background-repeat: no-repeat;
   // background: rgba(255, 255, 255, 0.76);
 }
+
+@media screen and (min-width: 524px) {
+  .SearchBar {
+    width: 70%;
+  }
+}

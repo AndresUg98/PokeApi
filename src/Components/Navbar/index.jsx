@@ -16,7 +16,7 @@ function Navbar() {
           </NavLink>
         </li>
         <li className="Navbar-home">
-          <NavLink onClick={() => context.closeAll()}>
+          <NavLink onClick={() => context.closeAll()} to="./">
             <img src={Pokedex} alt="" />
           </NavLink>
         </li>
