@@ -6,6 +6,8 @@ export const PokemonContext = createContext();
 export const PokemonProvider = ({ children }) => {
   //Open PokemonInfo
   const [isPokeInfoOpen, setIsPokeInfoOpen] = useState(false);
+  //Open Pokemon Team
+  const [isPokeTeamOpen, setIsPokeTeamOpen] = useState(false);
   // get pokemons
   const [pokemons, setPokemons] = useState(null);
   //const [pokemons2, setPokemons2] = useState([]);
@@ -67,6 +69,13 @@ export const PokemonProvider = ({ children }) => {
   const openPokeInfo = () => setIsPokeInfoOpen(true);
   const closePokeInfo = () => setIsPokeInfoOpen(false);
 
+  const openClosePokeTeam = () =>
+    !isPokeTeamOpen == true
+      ? setIsPokeTeamOpen(true)
+      : setIsPokeTeamOpen(false);
+
+  const closeAll = () => setIsPokeInfoOpen(false) || setIsPokeTeamOpen(false);
+
   //Pokemon info . show pokemon info
   const [pokemonToShow, setPokemonToShow] = useState({});
 
@@ -104,6 +113,7 @@ export const PokemonProvider = ({ children }) => {
   //stores the favorite pokemons of the user and puts them into the 'pokeTeam' page
   const [favoritePokemons, setFavoritePokemons] = useState(parsedPokemons);
 
+  //storing the favorite pokemons on the localStorage
   localStorage.setItem("FavoritePokemons_V1", JSON.stringify(favoritePokemons));
 
   return (
@@ -111,6 +121,9 @@ export const PokemonProvider = ({ children }) => {
       value={{
         openPokeInfo,
         closePokeInfo,
+        openClosePokeTeam,
+        closeAll,
+        isPokeTeamOpen,
         isPokeInfoOpen,
         pokemonToShow,
         setPokemonToShow,

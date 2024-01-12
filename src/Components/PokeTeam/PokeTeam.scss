@@ -1,4 +1,5 @@
 .container {
+  position: fixed;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 5px;
@@ -11,4 +12,7 @@
   overflow: scroll;
   box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.37);
   box-sizing: border-box;
+}
+.close {
+  display: none;
 }

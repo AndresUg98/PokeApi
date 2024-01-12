@@ -11,12 +11,12 @@ function Navbar() {
     <nav className="Navbar">
       <ul className="Navbar-elements">
         <li className="Navbar-team">
-          <NavLink to="/PokeTeam">
+          <NavLink onClick={() => context.openClosePokeTeam()}>
             <img src={Pokeball} alt="" />
           </NavLink>
         </li>
         <li className="Navbar-home">
-          <NavLink to="/">
+          <NavLink onClick={() => context.closeAll()}>
             <img src={Pokedex} alt="" />
           </NavLink>
         </li>

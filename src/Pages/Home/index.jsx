@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { PokemonContext } from "../../Context";
 import { SearchBar } from "../../Components/SearchBar";
+import { PokeTeam } from "../../Components/PokeTeam";
 import { PokeInfo } from "../../Components/PokeInfo";
 import { PokeCard } from "../../Components/PokeCard";
 import "./Home.scss";
@@ -35,6 +36,7 @@ function Home() {
       </section>
       <section className="Home-content">{renderView()}</section>
       <PokeInfo />
+      <PokeTeam />
     </div>
   );
 }
