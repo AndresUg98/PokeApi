@@ -26,8 +26,6 @@ function PokeCard({ data }) {
       (pokemon) => pokemonData.id !== pokemon.id
     );
     context.setFavoritePokemons(removedPokemon);
-
-    //console.log("Eliminaste a  ", pokemonData.name);
   };
 
   const renderIcon = (id) => {
@@ -55,8 +53,21 @@ function PokeCard({ data }) {
     }
   };
 
+  const myRef = React.useRef(null);
+
+  React.useEffect(() => {
+    const node = myRef.current;
+    if (document.contains(node)) {
+      context.setLoading(false);
+    }
+  }, []);
+
   return (
-    <div className="PokeCard-contianer" onClick={() => showPokemon(data)}>
+    <div
+      ref={myRef}
+      className="PokeCard-contianer"
+      onClick={() => showPokemon(data)}
+    >
       {renderIcon(data.id)}
       <figure className="PokeCard-img">
         <img src={data.img} alt="" />

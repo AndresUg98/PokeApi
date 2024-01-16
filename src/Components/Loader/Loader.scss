@@ -1,51 +1,59 @@
-.pokemon-loader__container {
+.loader-container {
+  h3 {
+    text-align: center;
+  }
   position: absolute;
-  top: 50%;
-  left: 50%;
-
-  transform: translate(-50%, -50%);
+  z-index: 3;
 }
 
-.pokemon-loader {
-  width: 60px;
-  height: 60px;
-  background-color: #fff;
-  border-radius: 50%;
+.pokeball {
   position: relative;
-  overflow: hidden;
-  border: 3px solid;
-  animation: frames 0.8s linear 0s infinite;
-}
-
-.pokemon-loader:after {
-  content: "";
-  position: absolute;
-  width: 60px;
-  height: 30px;
-  background-color: red;
-  border-bottom: 4px solid;
-  top: -4px;
-}
-
-.pokemon-loader:before {
-  content: "";
-  position: absolute;
+  width: 150px;
+  height: 150px;
   background-color: #fff;
-  width: 10px;
-  height: 10px;
-  border: 4px solid;
+  border: 5px solid #000;
   border-radius: 50%;
-  bottom: 18px;
-  right: 18px;
-  z-index: 1;
+  overflow: hidden;
+  animation-name: spin;
+  animation-duration: 4000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
 }
-
-/* AnimationFrames */
-@keyframes frames {
-  0% {
+@keyframes spin {
+  from {
     transform: rotate(0deg);
   }
-  100% {
+  to {
     transform: rotate(360deg);
   }
+}
+.pokeball::before {
+  content: "";
+  position: absolute;
+  background-color: red;
+  width: 100%;
+  height: 50%;
+}
+
+.pokeball::after {
+  content: "";
+  position: absolute;
+  top: calc(50% - 3px);
+  width: 100%;
+  height: 50%;
+  background-color: white;
+  border-top: 5px solid;
+}
+
+.button {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border: 4px solid;
+  border-radius: 50%;
+  top: calc(50% - 15px - 4px);
+  left: calc(50% - 15px - 4px);
+  z-index: 10;
+  background-color: white;
+  box-shadow: 0 0 0 2px black;
 }

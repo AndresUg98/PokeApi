@@ -1,9 +1,11 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
+import ReactDOM from "react-dom";
 import { PokemonContext } from "../../Context";
 import { SearchBar } from "../../Components/SearchBar";
 import { PokeTeam } from "../../Components/PokeTeam";
 import { PokeInfo } from "../../Components/PokeInfo";
 import { PokeCard } from "../../Components/PokeCard";
+import { Loader } from "../../Components/Loader";
 import "./Home.scss";
 
 function Home() {
@@ -34,7 +36,11 @@ function Home() {
         <h2>¡Gotta chatch'em all!</h2>
         <SearchBar />
       </section>
-      <section className="Home-content">{renderView()}</section>
+      <section className="Home-content">
+        {context.loading && <Loader />}
+
+        {renderView()}
+      </section>
       <PokeInfo />
       <PokeTeam />
     </div>

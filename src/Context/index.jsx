@@ -20,6 +20,9 @@ export const PokemonProvider = ({ children }) => {
   const pokeApi = "https://pokeapi.co/api/v2/pokemon?limit=1008";
   //  consumiendo api pokemon
 
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
   useEffect(() => {
     const getPokemons = async () => {
       //Recuperar la lista de los pokemones
@@ -63,6 +66,9 @@ export const PokemonProvider = ({ children }) => {
       setPokemons(await Promise.all(NewPokemons));
     };
 
+    // setTimeout(() => {
+    //   setLoading(false);
+    // }, 20000);
     getPokemons();
   }, []);
 
@@ -134,6 +140,9 @@ export const PokemonProvider = ({ children }) => {
         filteredpokemons,
         favoritePokemons,
         setFavoritePokemons,
+        loading,
+        setLoading,
+        error,
       }}
     >
       {children}
