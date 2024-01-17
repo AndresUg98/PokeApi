@@ -5,7 +5,7 @@ import { GrFavorite } from "react-icons/gr";
 import "./PokeCard.scss";
 import { render } from "react-dom";
 
-function PokeCard({ data }) {
+function PokeCard({ data, location }) {
   const context = useContext(PokemonContext);
 
   //sending the pokemon info to the PokeInfo card
@@ -54,17 +54,18 @@ function PokeCard({ data }) {
   };
 
   const myRef = React.useRef(null);
-
-  useEffect(() => {
-    const node = myRef.current;
-    if (document.contains(node)) {
-      context.setLoading(false);
-    }
-  }, []);
+  if (myRef != null) {
+    useEffect(() => {
+      const node = myRef.current;
+      if (document.contains(node)) {
+        context.setLoading(false);
+      }
+    }, []);
+  }
 
   return (
     <div
-      ref={myRef}
+      ref={location == true ? myRef : null}
       className="PokeCard-contianer"
       onClick={() => showPokemon(data)}
     >

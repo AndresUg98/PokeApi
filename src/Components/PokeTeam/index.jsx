@@ -7,7 +7,7 @@ function PokeTeam() {
   return (
     <div className={`${context.isPokeTeamOpen ? "container" : "close"}`}>
       {context.favoritePokemons?.map((pokemon) => {
-        return <PokeCard key={pokemon.name} data={pokemon} />;
+        return <PokeCard key={pokemon.name} data={pokemon} location={false} />;
       })}
     </div>
   );

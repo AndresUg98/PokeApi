@@ -15,7 +15,7 @@ function Home() {
     if (context.searchPokemon?.length > 0) {
       if (context.filteredpokemons?.length > 0) {
         return context.filteredpokemons?.map((pokemon) => {
-          return <PokeCard key={pokemon.name} data={pokemon} />;
+          return <PokeCard key={pokemon.name} data={pokemon} location={true} />;
         });
       } else {
         return <div>Pokemon not found</div>;
@@ -23,19 +23,13 @@ function Home() {
     } else {
       {
         return context.pokemons?.map((pokemon) => {
-          return <PokeCard key={pokemon.name} data={pokemon} />;
+          //location is used to know where the item is being render. In the "Home" or in the "PokeTeam"
+          //The value of "location" is connected with the "loading" function that helps the "loader" when to disappear
+          return <PokeCard key={pokemon.name} data={pokemon} location={true} />;
         });
       }
     }
   };
-
-  // const renderLoader = () => {
-  //   if (context.loading == true) {
-  //     <Loader value={"bg-loader"} />;
-  //   } else {
-  //     <Loader value={"out"} />;
-  //   }
-  // };
 
   return (
     <div className="Home">
