@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { PokemonContext } from "../../Context";
 import { GrFavorite } from "react-icons/gr";
@@ -55,7 +55,7 @@ function PokeCard({ data }) {
 
   const myRef = React.useRef(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const node = myRef.current;
     if (document.contains(node)) {
       context.setLoading(false);

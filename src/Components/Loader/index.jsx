@@ -1,12 +1,17 @@
-import React from "react";
+import { useContext } from "react";
+import { PokemonContext } from "../../Context";
 import "./Loader.scss";
-function Loader() {
+function Loader({ value }) {
+  const context = useContext(PokemonContext);
+
   return (
-    <div className="loader-container">
-      <div className="pokeball">
-        <div className="button"></div>
+    <div className={value}>
+      <div className="loader-container">
+        <div className="pokeball">
+          <div className="button"></div>
+        </div>
+        <h3>Loading...</h3>
       </div>
-      <h3>Loading...</h3>
     </div>
   );
 }

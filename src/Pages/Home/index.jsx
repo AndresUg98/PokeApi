@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { PokemonContext } from "../../Context";
 import { SearchBar } from "../../Components/SearchBar";
@@ -29,6 +29,14 @@ function Home() {
     }
   };
 
+  // const renderLoader = () => {
+  //   if (context.loading == true) {
+  //     <Loader value={"bg-loader"} />;
+  //   } else {
+  //     <Loader value={"out"} />;
+  //   }
+  // };
+
   return (
     <div className="Home">
       <section className="Home-header">
@@ -37,8 +45,12 @@ function Home() {
         <SearchBar />
       </section>
       <section className="Home-content">
-        {context.loading && <Loader />}
-
+        {context.loading ? (
+          <Loader value={"bg-loader"} />
+        ) : (
+          <Loader value={"out"} />
+        )}
+        {/* {renderLoader()} */}
         {renderView()}
       </section>
       <PokeInfo />

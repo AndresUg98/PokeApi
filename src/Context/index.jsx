@@ -66,9 +66,6 @@ export const PokemonProvider = ({ children }) => {
       setPokemons(await Promise.all(NewPokemons));
     };
 
-    // setTimeout(() => {
-    //   setLoading(false);
-    // }, 20000);
     getPokemons();
   }, []);
 
