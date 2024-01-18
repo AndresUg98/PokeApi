@@ -6,6 +6,7 @@ import { PokeTeam } from "../../Components/PokeTeam";
 import { PokeInfo } from "../../Components/PokeInfo";
 import { PokeCard } from "../../Components/PokeCard";
 import { Loader } from "../../Components/Loader";
+import { NotFound } from "../../Components/NotFound";
 import "./Home.scss";
 
 function Home() {
@@ -18,7 +19,7 @@ function Home() {
           return <PokeCard key={pokemon.name} data={pokemon} location={true} />;
         });
       } else {
-        return <div>Pokemon not found</div>;
+        return <NotFound />;
       }
     } else {
       {
