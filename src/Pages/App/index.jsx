@@ -5,7 +5,7 @@ import { Navbar } from "../../Components/Navbar";
 import "./App.css";
 
 const AppRoutes = () => {
-  let routes = useRoutes([{ path: "/", element: <Home /> }]);
+  let routes = useRoutes([{ path: "/PokeApi", element: <Home /> }]);
   return routes;
 };
 

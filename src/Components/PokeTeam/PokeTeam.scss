@@ -31,9 +31,8 @@
 
 .pokeballBg {
   width: 100%;
-  position: fixed;
   margin: 0;
-  height: 298px;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -56,11 +55,29 @@
     border-radius: 0 15px 15px 0;
     border: 1px solid black;
   }
+
+  .pokeballBg {
+    width: 50%;
+    margin: 0;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-100%, -50%);
+  }
 }
 
 @media screen and (min-width: 700px) {
   .container {
     width: 40%;
+  }
+
+  .pokeballBg {
+    width: 40%;
+    margin: 0;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-125%, -50%);
   }
 }
 
@@ -69,6 +86,14 @@
     width: 30%;
     border-radius: 0 15px 15px 0;
     overflow-x: hidden;
+  }
+  .pokeballBg {
+    width: 30%;
+    margin: 0;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-168%, -50%);
   }
   /* width and height of the entire scrollbar */
   ::-webkit-scrollbar {
@@ -86,5 +111,11 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #8c8a8a;
     width: 15px;
+  }
+}
+
+@media screen and (min-width: 1300px) {
+  .pokemons-container {
+    grid-template-columns: 1fr 1fr 1fr;
   }
 }
