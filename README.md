@@ -3,7 +3,9 @@
 Hello, everyone!
 
 Welcome to my pokedex, an intuitive and easy-to-use web application were you are gonna be able to see the stadistics, types, abilities and a resume of every pokemon.
+
 In this pokedex you're able to search by name, type and dex number so you can find your favorite pokemons easly
+
 Also you can mark as favorite the pokemons that you like to put them on your team
 
 URL of the project: https://andresug98.github.io/PokeApi/
