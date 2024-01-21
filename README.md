@@ -8,6 +8,12 @@ Also you can mark as favorite the pokemons that you like to put them on your tea
 
 URL of the project: https://andresug98.github.io/PokeApi/
 
+
+# Prototype with Figma
+Here is the figma project were the pokedex app is based: https://www.figma.com/file/I3EA9ROfbN9i0xRXDSILLh/Untitled?type=design&node-id=0%3A1&mode=design&t=oDMpyaWQTjKavJpc-1
+
+Preview: https://www.figma.com/proto/I3EA9ROfbN9i0xRXDSILLh/Untitled?type=design&node-id=5-2&t=oDMpyaWQTjKavJpc-0&scaling=scale-down&page-id=0%3A1
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
